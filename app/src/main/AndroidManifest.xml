@@ -16,9 +16,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Nectar">
-        <activity android:name=".UploadAvaterActivity"></activity>
+        <activity android:name=".categoryProductActivity"></activity>
+        <activity android:name=".UploadAvaterActivity" />
         <activity android:name=".VerifyPhoneActivity" />
-        <activity android:name=".SignUpActivity"></activity>
+        <activity android:name=".SignUpActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".GetStartedActivity" />
         <activity android:name=".SplashScreenActivity">
