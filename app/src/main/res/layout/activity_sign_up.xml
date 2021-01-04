@@ -6,6 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".SignUpActivity">
 
+
+
+
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="wrap_content"
@@ -31,20 +34,20 @@
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
     <TextView
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp"
         android:id="@+id/textView4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
         android:text="Enter your credentials to continue"
         android:textSize="18sp"
         app:layout_constraintTop_toBottomOf="@+id/textView3"
         tools:layout_editor_absoluteX="20dp" />
 
     <LinearLayout
-        android:layout_marginTop="60dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginTop="60dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -54,116 +57,118 @@
         <com.google.android.material.textfield.TextInputLayout
 
             android:id="@+id/textNameTI"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:errorEnabled="true"
-            >
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            app:errorEnabled="true">
+
             <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/edittext_shape"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:hint="Full Name"
-                android:inputType="text"/>
+                android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/textPhoneTI"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+            android:id="@+id/textEmailTI"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:errorEnabled="true"
-            >
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            app:errorEnabled="true">
+
             <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/edittext_shape"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Phone Number"
-                android:inputType="phone"/>
+                android:hint="Email Address"
+                android:inputType="textEmailAddress" />
         </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textPassTI"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:passwordToggleEnabled="true"
-            app:passwordToggleDrawable="@drawable/ic_baseline_filter_vintage_24"
-            app:passwordToggleTint="@color/purple_700"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             app:errorEnabled="true"
-            >
+            app:passwordToggleDrawable="@drawable/ic_baseline_filter_vintage_24"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/purple_700">
+
             <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/edittext_shape"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:hint="Password"
-                android:inputType="textPassword"
-                />
+                android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
+
         <com.google.android.material.textfield.TextInputLayout
-            app:passwordToggleEnabled="true"
-            app:passwordToggleDrawable="@drawable/ic_baseline_filter_vintage_24"
-            app:passwordToggleTint="@color/purple_700"
             android:id="@+id/textCPassTI"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
             app:errorEnabled="true"
-            >
+            app:passwordToggleDrawable="@drawable/ic_baseline_filter_vintage_24"
+            app:passwordToggleEnabled="true"
+            app:passwordToggleTint="@color/purple_700">
+
             <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="20dp"
                 android:background="@drawable/edittext_shape"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 android:hint="Confirm Password"
-                android:inputType="textPassword"/>
+                android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
 
-            android:layout_marginTop="10dp"
-            android:layout_gravity="center"
             android:id="@+id/signUpBtn"
             android:layout_width="300dp"
             android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
             android:background="@drawable/button_shape"
             android:text="Sign Up"
             android:textAllCaps="false"
             android:textSize="18sp" />
 
         <LinearLayout
-            android:gravity="center_horizontal"
-            android:layout_marginRight="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_marginRight="20dp"
+            android:gravity="center_horizontal">
 
             <TextView
-                android:textStyle="bold"
-                android:textSize="15sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Already have an account? "/>
+                android:text="Already have an account? "
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/signInTV"
-                android:textColor="@color/purple_700"
-                android:textStyle="bold"
-                android:textSize="15sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Sign In"/>
+                android:text="Sign In"
+                android:textColor="@color/purple_700"
+                android:textSize="15sp"
+                android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

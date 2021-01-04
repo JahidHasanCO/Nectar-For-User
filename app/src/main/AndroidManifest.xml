@@ -16,18 +16,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Nectar">
-        <activity android:name=".VerifyPhoneActivity"></activity>
-        <activity android:name=".SignUpActivity">
+        <activity android:name=".UploadAvaterActivity"></activity>
+        <activity android:name=".VerifyPhoneActivity" />
+        <activity android:name=".SignUpActivity"></activity>
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".GetStartedActivity" />
+        <activity android:name=".SplashScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".GetStartedActivity" />
-        <activity android:name=".SplashScreenActivity" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
