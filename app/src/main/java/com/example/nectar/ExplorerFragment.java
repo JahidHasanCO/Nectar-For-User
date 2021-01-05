@@ -1,7 +1,9 @@
 package com.example.nectar;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -10,12 +12,25 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class ExplorerFragment extends Fragment {
 
-    private RecyclerView categoriesRv;
+    private RecyclerView categoriesRv,productRv;
+
+    private FirebaseAuth firebaseAuth;
+    private ProgressDialog progressDialog;
+
+    private ArrayList<ModelProduct> productList2;
+    private AdapterProduct adapterProduct;
 
     List<String> titles;
     List<Integer> images;
@@ -56,6 +71,15 @@ public class ExplorerFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_explorer, container, false);
 
         categoriesRv = view.findViewById(R.id.categoriesRv);
+        productRv = view.findViewById(R.id.productRv);
+
+        progressDialog = new ProgressDialog(view.getContext());
+        progressDialog.setTitle("Please Wait");
+        progressDialog.setCanceledOnTouchOutside(false);
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        loadAllProducts(view);
+
 
         titles = new ArrayList<>();
         images = new ArrayList<>();
@@ -80,10 +104,36 @@ public class ExplorerFragment extends Fragment {
         images.add(R.drawable.other);
 
         adapter = new CategoryAdapter(getActivity(),titles,images);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),2,GridLayoutManager.VERTICAL,false);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),1,GridLayoutManager.HORIZONTAL,false);
         categoriesRv.setLayoutManager(gridLayoutManager);
+
         categoriesRv.setAdapter(adapter);
 
         return view;
+    }
+
+    private void loadAllProducts(View view) {
+        productList2 = new ArrayList<>();
+
+        DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Products");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                productList2.clear();
+                for (DataSnapshot ds: snapshot.getChildren()){
+                    ModelProduct modelProduct = ds.getValue(ModelProduct.class);
+                    productList2.add(modelProduct);
+                }
+                adapterProduct = new AdapterProduct(getContext(),productList2);
+                GridLayoutManager gridLayoutManager2 = new GridLayoutManager(getActivity(),3,GridLayoutManager.VERTICAL,false);
+                productRv.setLayoutManager(gridLayoutManager2);
+                productRv.setAdapter(adapterProduct);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
     }
 }
