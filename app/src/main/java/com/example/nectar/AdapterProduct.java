@@ -1,6 +1,7 @@
 package com.example.nectar;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Paint;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -78,7 +79,10 @@ public class AdapterProduct extends RecyclerView.Adapter<AdapterProduct.HolderPr
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                String productId = modelProduct.getProductId();
+                Intent intent = new Intent(v.getContext(),ProductDetailsActivity.class);
+                intent.putExtra("proID",productId);
+                context.startActivity(intent);
             }
         });
 
