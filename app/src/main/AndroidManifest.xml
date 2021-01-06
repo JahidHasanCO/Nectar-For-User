@@ -16,8 +16,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Nectar">
-        <activity android:name=".ProductDetailsActivity">
-
+        <activity android:name=".ProductDetailsActivity"
+           android:windowSoftInputMode="stateHidden"> <!--  hide keyboard by default-->
 
         </activity>
         <activity android:name=".categoryProductActivity" />

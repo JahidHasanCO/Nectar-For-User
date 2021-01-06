@@ -12,6 +12,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextClock;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.blogspot.atifsoftwares.circularimageview.CircularImageView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,10 +24,16 @@ import com.google.firebase.database.ValueEventListener;
 import com.jaeger.library.StatusBarUtil;
 import com.squareup.picasso.Picasso;
 
+import p32929.androideasysql_library.Column;
+import p32929.androideasysql_library.EasyDB;
+
 public class ProductDetailsActivity extends AppCompatActivity {
 
-    private Boolean desCh = true;
+    private Boolean desCh = true,disCount = false;
     String proId ;
+    private double cost = 0,discountCost = 0;
+    private double finalCost = 0,finalDiscountCost = 0;
+    private int quantity = 0;
     private FirebaseAuth firebaseAuth;
     private ImageButton backBtn,FavouriteBtn,minusBtn,plusBtn,productDesHideBtn;
     private TextView discountNoteTv,productNameTv,productQuantityTv ,shopNameTv,addressTv
@@ -43,6 +50,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         StatusBarUtil.setTransparent(this);
 
         backBtn = findViewById(R.id.backBtn);
+        productSize = findViewById(R.id.productSize);
         discountNoteTv = findViewById(R.id.discountNoteTv);
         productImageIv = findViewById(R.id.productImageIv);
         productNameTv = findViewById(R.id.productNameTv);
@@ -63,6 +71,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         loadProductDetails();
 
+
         productDesHideBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,6 +88,50 @@ public class ProductDetailsActivity extends AppCompatActivity {
             }
         });
 
+        plusBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finalCost = finalCost + cost;
+                finalDiscountCost = finalDiscountCost + discountCost;
+                quantity++;
+                productOriginalPriceTv.setText("$"+finalCost);
+                productDiscountPriceTv.setText("$"+finalDiscountCost);
+                productSize.setText(""+quantity);
+            }
+        });
+
+        minusBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (quantity>1){
+                    finalCost = finalCost - cost;
+                    finalDiscountCost = finalDiscountCost - discountCost;
+                    quantity--;
+                    productOriginalPriceTv.setText("$"+finalCost);
+                    productDiscountPriceTv.setText("$"+finalDiscountCost);
+                    productSize.setText(""+quantity);
+                }
+            }
+        });
+
+        addToCartBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String title = productNameTv.getText().toString().trim();
+                String quantity2 = productSize.getText().toString().trim();
+                String price = "";
+                if (disCount){
+                    price = productDiscountPriceTv.getText().toString().trim().replace("$","");
+                }
+                else {
+                    price = productOriginalPriceTv.getText().toString().trim().replace("$","");
+                }
+                //add to db(SQLite)
+                addToCard(proId,title,price,quantity2);
+
+            }
+        });
+
 
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,6 +142,30 @@ public class ProductDetailsActivity extends AppCompatActivity {
 
     }
 
+    private int itemId = 1;
+    private void addToCard(String proId, String title, String price, String quantity2) {
+
+        itemId++;
+        EasyDB easyDB = EasyDB.init(ProductDetailsActivity.this,"ITEMS_DB")
+                .setTableName("ITEMS_TABLE")
+                .addColumn(new Column("Item_Id",new String[]{"text","unique"}))
+                .addColumn(new Column("Item_PID",new String[]{"text","not null"}))
+                .addColumn(new Column("Item_Name",new String[]{"text","not null"}))
+                .addColumn(new Column("Item_Price",new String[]{"text","not null"}))
+                .addColumn(new Column("Item_Quantity",new String[]{"text","not null"}))
+                .doneTableColumn();
+
+        Boolean b = easyDB.addData("Item_Id",itemId)
+                .addData("Item_PID",proId)
+                .addData("Item_Name",title)
+                .addData("Item_Price",price)
+                .addData("Item_Quantity",quantity2)
+                .doneDataAdding();
+        Toast.makeText(ProductDetailsActivity.this,"Adding to cart.",Toast.LENGTH_SHORT).show();
+
+    }
+
+
     private void loadProductDetails() {
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Products");
         ref.orderByChild("productId").equalTo(proId)
@@ -98,31 +175,40 @@ public class ProductDetailsActivity extends AppCompatActivity {
                         for (DataSnapshot ds: snapshot.getChildren()){
                             String shopUid = ""+ds.child("shopUid").getValue();
 
-
                             String productTitle = ""+ds.child("productTitle").getValue();
                             String productImage = ""+ds.child("productImage").getValue();
                             String productDescription1 = ""+ds.child("productDescription").getValue();
                             String productQuantity = ""+ds.child("productQuantity").getValue();
                             String originalPrice = ""+ds.child("originalPrice").getValue();
+
                             String discountNote = ""+ds.child("discountNote").getValue();
                             String discountAvailable = ""+ds.child("discountAvailable").getValue();
                             String productDiscountedPrice = ""+ds.child("discountPrice").getValue();
 
 
                             productNameTv.setText(productTitle);
-                            productQuantityTv.setText(productQuantity);
+                            productQuantityTv.setText(productQuantity +", Price");
                             if(discountAvailable.equals("true")){
+                                disCount = true;
                                 discountNoteTv.setVisibility(View.VISIBLE);
                                 productDiscountPriceTv.setVisibility(View.VISIBLE);
                                 productOriginalPriceTv.setPaintFlags(productOriginalPriceTv.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG);
                             }
                             else {
+                                disCount = false;
                                 discountNoteTv.setVisibility(View.GONE);
                                 productDiscountPriceTv.setVisibility(View.GONE);
 
                             }
-                            productDiscountPriceTv.setText("$"+productDiscountedPrice);
-                            productOriginalPriceTv.setText("$"+originalPrice);
+
+                            cost = Double.parseDouble(originalPrice.replaceAll("$",""));
+                            discountCost = Double.parseDouble(productDiscountedPrice.replaceAll("$",""));
+                            finalCost = Double.parseDouble(originalPrice.replaceAll("$",""));
+                            finalDiscountCost = Double.parseDouble(productDiscountedPrice.replaceAll("$",""));
+                            quantity = 1;
+
+                            productDiscountPriceTv.setText("$"+finalDiscountCost);
+                            productOriginalPriceTv.setText("$"+finalCost);
                             discountNoteTv.setText(discountNote);
                             productDescription.setText(productDescription1);
 

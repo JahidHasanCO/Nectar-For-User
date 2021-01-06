@@ -303,7 +303,7 @@
         android:layout_width="340dp"
         android:layout_height="60dp"
         android:background="@drawable/button_shape"
-        android:text="Add To Basket"
+        android:text="Add To Cart"
         android:textAllCaps="false"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
