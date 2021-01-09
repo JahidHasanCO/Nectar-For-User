@@ -4,8 +4,7 @@
     android:layout_height="wrap_content">
 
     <ImageView
-        android:layout_marginRight="25dp"
-        android:layout_marginLeft="25dp"
+
         android:scaleType="centerCrop"
         android:layout_width="match_parent"
         android:layout_height="115dp"

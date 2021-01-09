@@ -1,6 +1,7 @@
 package com.example.nectar;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,8 +14,10 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -42,6 +45,7 @@ public class ShopFragment extends Fragment {
     private CircleIndicator circleIndicatorCi;
     private Timer timer;
     private Handler handler;
+    private TextView addressTv;
 
     private ArrayList<ModelProduct> productList2;
     private AdapterProduct adapterProduct;
@@ -83,6 +87,7 @@ public class ShopFragment extends Fragment {
         exclusiveProductRv = view.findViewById(R.id.exclusiveProductRv);
         imageSliderVp = view.findViewById(R.id.imageSliderVp);
         circleIndicatorCi = view.findViewById(R.id.circleIndicatorCi);
+        addressTv = view.findViewById(R.id.addressTv);
 
         progressDialog = new ProgressDialog(view.getContext());
         progressDialog.setTitle("Please Wait");
@@ -119,11 +124,40 @@ public class ShopFragment extends Fragment {
             }
         },4000,4000);
 
+        checkUser();
         loadExClusiveProducts(view);
 
 
         return view;
     }
+
+    private void checkUser() {
+            FirebaseUser user = firebaseAuth.getCurrentUser();
+            if (user == null) {
+                startActivity(new Intent(getContext(), LoginActivity.class));
+            } else {
+                loadMyInfo();
+            }
+        }
+
+        private void loadMyInfo() {
+            DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
+            ref.child(firebaseAuth.getUid())
+                    .addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            for (DataSnapshot ds: snapshot.getChildren()){
+
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+        }
+
 
     private void loadExClusiveProducts(View view) {
         productList2 = new ArrayList<>();

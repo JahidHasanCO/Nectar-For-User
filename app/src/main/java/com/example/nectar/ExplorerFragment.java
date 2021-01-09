@@ -8,9 +8,12 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -25,6 +28,7 @@ import java.util.List;
 public class ExplorerFragment extends Fragment {
 
     private RecyclerView categoriesRv,productRv;
+    private EditText searchProduct;
 
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
@@ -72,6 +76,7 @@ public class ExplorerFragment extends Fragment {
 
         categoriesRv = view.findViewById(R.id.categoriesRv);
         productRv = view.findViewById(R.id.productRv);
+        searchProduct = view.findViewById(R.id.searchProduct);
 
         progressDialog = new ProgressDialog(view.getContext());
         progressDialog.setTitle("Please Wait");
@@ -108,6 +113,28 @@ public class ExplorerFragment extends Fragment {
         categoriesRv.setLayoutManager(gridLayoutManager);
 
         categoriesRv.setAdapter(adapter);
+
+        searchProduct.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                try {
+                    adapterProduct.getFilter().filter(s);
+                }
+                catch (Exception e){
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
         return view;
     }

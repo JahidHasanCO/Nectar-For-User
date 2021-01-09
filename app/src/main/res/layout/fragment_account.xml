@@ -5,10 +5,12 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".AccountFragment">
+    tools:context=".AccountFragment"
+    android:background="@color/status"
+    >
 
     <androidx.constraintlayout.widget.ConstraintLayout
-
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -28,8 +30,8 @@
 
         <com.blogspot.atifsoftwares.circularimageview.CircularImageView
             android:id="@+id/profileImageCv"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
+            android:layout_width="65dp"
+            android:layout_height="65dp"
 
             android:src="@drawable/ic_baseline_person_24"
             app:c_border="true"
@@ -80,7 +82,7 @@
     <LinearLayout
         android:id="@+id/linearLayout6"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="60dp"
         android:layout_marginLeft="25dp"
         android:layout_marginTop="30dp"
         android:layout_marginRight="25dp"
@@ -102,14 +104,14 @@
             android:orientation="horizontal">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="5"
                 android:drawableLeft="@drawable/ic_orders_icon"
                 android:drawablePadding="20dp"
                 android:text="Orders"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textSize="18sp"
+                 />
 
             <ImageButton
                 android:layout_width="wrap_content"
@@ -122,7 +124,7 @@
     <LinearLayout
         android:id="@+id/linearLayout7"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="60dp"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         android:orientation="vertical"
@@ -149,8 +151,8 @@
                 android:drawableLeft="@drawable/ic_my_details_icon"
                 android:drawablePadding="20dp"
                 android:text="My Details"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textSize="18sp"
+                />
 
             <ImageButton
                 android:layout_width="wrap_content"
@@ -163,7 +165,7 @@
     <LinearLayout
         android:id="@+id/linearLayout11"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="60dp"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         android:orientation="vertical"
@@ -190,8 +192,8 @@
                 android:drawableLeft="@drawable/ic_delicery_address"
                 android:drawablePadding="20dp"
                 android:text="Delivery Address"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textSize="18sp"
+                 />
 
             <ImageButton
                 android:layout_width="wrap_content"
@@ -204,7 +206,7 @@
     <LinearLayout
         android:id="@+id/linearLayout10"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="60dp"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         android:orientation="vertical"
@@ -231,8 +233,7 @@
                 android:drawableLeft="@drawable/ic_payment_icon"
                 android:drawablePadding="20dp"
                 android:text="Payment Methods"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textSize="18sp"/>
 
             <ImageButton
                 android:layout_width="wrap_content"
@@ -245,7 +246,7 @@
     <LinearLayout
         android:id="@+id/linearLayout9"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="60dp"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         android:orientation="vertical"
@@ -272,8 +273,7 @@
                 android:drawableLeft="@drawable/ic_promo_cord_icon"
                 android:drawablePadding="20dp"
                 android:text="Promo Code"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textSize="18sp" />
 
             <ImageButton
                 android:layout_width="wrap_content"
@@ -286,7 +286,7 @@
     <LinearLayout
         android:id="@+id/linearLayout8"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="60dp"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         android:orientation="vertical"
@@ -313,8 +313,7 @@
                 android:drawableLeft="@drawable/ic_bell_icon"
                 android:drawablePadding="20dp"
                 android:text="Notifecations "
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textSize="18sp"/>
 
             <ImageButton
                 android:layout_width="wrap_content"
@@ -328,7 +327,7 @@
 
         android:id="@+id/linearLayout12"
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="60dp"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
         android:orientation="vertical"
@@ -355,8 +354,7 @@
                 android:drawableLeft="@drawable/ic_help_icon"
                 android:drawablePadding="20dp"
                 android:text="Help"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textSize="18sp" />
 
             <ImageButton
                 android:layout_width="wrap_content"
@@ -365,48 +363,56 @@
                 android:src="@drawable/ic_next_arrow_black" />
         </LinearLayout>
     </LinearLayout>
-
-    <LinearLayout
-
-        android:id="@+id/linearLayout13"
-        android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:layout_marginLeft="25dp"
-        android:layout_marginRight="25dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout12">
-
-        <View
-
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="?android:attr/listDivider" />
 
         <LinearLayout
+
+            android:id="@+id/linearLayout13"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:layout_height="60dp"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout12">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="5"
-                android:drawableLeft="@drawable/ic_about_icon"
-                android:drawablePadding="20dp"
-                android:text="About"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+            <View
 
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@null"
-                android:src="@drawable/ic_next_arrow_black" />
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="?android:attr/listDivider" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="5"
+                    android:drawableLeft="@drawable/ic_about_icon"
+                    android:drawablePadding="20dp"
+                    android:text="About"
+                    android:textSize="18sp" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@null"
+                    android:src="@drawable/ic_next_arrow_black" />
+
+            </LinearLayout>
+            <View
+
+                android:id="@+id/divider2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+
+                />
         </LinearLayout>
-    </LinearLayout>
+
 
         <Button
             android:id="@+id/logOutButton"
@@ -428,5 +434,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/logOutButton" />
+
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

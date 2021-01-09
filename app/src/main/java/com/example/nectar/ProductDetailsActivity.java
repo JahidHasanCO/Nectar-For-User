@@ -212,7 +212,7 @@ public class ProductDetailsActivity extends AppCompatActivity {
                             productDescription.setText(productDescription1);
 
                             try {
-                                Picasso.get().load(productImage).placeholder(R.drawable.ic_store).into(productImageIv);
+                               Picasso.get().load(productImage).placeholder(R.drawable.ic_store).into(productImageIv);
                             }
                             catch (Exception e){
                                 productImageIv.setImageResource(R.drawable.ic_store);

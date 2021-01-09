@@ -1,5 +1,6 @@
 package com.example.nectar;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,14 +9,16 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class  ImageSliderAdapter extends PagerAdapter {
 
     List<Integer> list;
 
-    ImageSliderAdapter(List<Integer> ImageList){
-        this.list = ImageList;
+
+    ImageSliderAdapter(List<Integer> list){
+        this.list = list;
     }
 
     @Override
