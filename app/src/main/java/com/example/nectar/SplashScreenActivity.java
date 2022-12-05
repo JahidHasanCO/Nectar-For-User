@@ -14,7 +14,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.jaeger.library.StatusBarUtil;
 
 public class SplashScreenActivity extends AppCompatActivity {
     private FirebaseAuth firebaseAuth;
@@ -23,7 +22,6 @@ public class SplashScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-        StatusBarUtil.setTransparent(this);
 
         firebaseAuth =FirebaseAuth.getInstance();
 
