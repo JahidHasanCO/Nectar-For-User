@@ -4,8 +4,10 @@ plugins {
 }
 
 android {
+
+    namespace 'com.example.nectar'
     compileSdkVersion 33
-    buildToolsVersion "30.0.2"
+
 
     defaultConfig {
         applicationId "com.example.nectar"
