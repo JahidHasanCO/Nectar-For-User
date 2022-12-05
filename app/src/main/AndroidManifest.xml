@@ -28,7 +28,9 @@
         <activity android:name=".SignUpActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".GetStartedActivity" />
-        <activity android:name=".SplashScreenActivity">
+        <activity android:name=".SplashScreenActivity"
+                  android:exported="true"
+                  >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
