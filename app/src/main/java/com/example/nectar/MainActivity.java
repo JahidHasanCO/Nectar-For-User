@@ -9,7 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.jaeger.library.StatusBarUtil;
+
 
 public class MainActivity extends AppCompatActivity {
     private final static String TAG_FRAGMENT = "TAG_FRAGMENT";
@@ -17,7 +17,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        StatusBarUtil.setTransparent(this);
 
         BottomNavigationView btmNav = findViewById(R.id.botom_navigationView);
         btmNav.setOnNavigationItemSelectedListener(navListener);

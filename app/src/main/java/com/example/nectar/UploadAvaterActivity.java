@@ -31,7 +31,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.jaeger.library.StatusBarUtil;
 
 import java.util.HashMap;
 
@@ -61,8 +60,6 @@ public class UploadAvaterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload_avater);
 
-
-        StatusBarUtil.setTransparent(this);
 
         skipTv = findViewById(R.id.skipTv);
         profileIv = findViewById(R.id.profileIv);

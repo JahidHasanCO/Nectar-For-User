@@ -9,7 +9,6 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 
-import com.jaeger.library.StatusBarUtil;
 
 public class GetStartedActivity extends AppCompatActivity {
 

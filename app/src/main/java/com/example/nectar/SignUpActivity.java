@@ -20,7 +20,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.jaeger.library.StatusBarUtil;
+
 
 import java.util.HashMap;
 import java.util.regex.Pattern;
@@ -42,7 +42,6 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        StatusBarUtil.setTransparent(this);
 
         signInTV = findViewById(R.id.signInTV);
         textNameTI = findViewById(R.id.textNameTI);

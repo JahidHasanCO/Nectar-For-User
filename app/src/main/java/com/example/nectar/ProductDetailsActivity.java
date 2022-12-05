@@ -21,7 +21,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.jaeger.library.StatusBarUtil;
 import com.squareup.picasso.Picasso;
 
 import p32929.androideasysql_library.Column;
@@ -47,7 +46,6 @@ public class ProductDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_details);
-        StatusBarUtil.setTransparent(this);
 
         backBtn = findViewById(R.id.backBtn);
         productSize = findViewById(R.id.productSize);
