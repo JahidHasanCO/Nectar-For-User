@@ -22,10 +22,10 @@ jobs:
       - save_cache:
           paths:
             - ~/.gradle
-          key: jars-{{ checksum "build.gradle.kts" }}-{{ checksum  "app/build.gradle.kts" }}
+          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
 
       # Generate apk
-      - run: ./gradlew assembleRelease
+      - run: ./gradlew assembleDebug
       - store_artifacts:
           path: app/build/outputs/apk/
           destination: apks/
